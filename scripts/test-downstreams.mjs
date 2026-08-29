@@ -25,7 +25,8 @@ const downstreamEnv = {
   CI: '1',
   NPM_CONFIG_USERCONFIG: emptyUserConfig,
   npm_config_userconfig: emptyUserConfig,
-  NO_UPDATE_NOTIFIER: '1'
+  NO_UPDATE_NOTIFIER: '1',
+  PUPPETEER_SKIP_DOWNLOAD: 'true'
 }
 for (const key of Object.keys(downstreamEnv)) {
   if (/^(?:(?:npm_config|yarn)[_-])?(?:proxy|https?[_-]proxy|all[_-]proxy)$/i.test(key)) delete downstreamEnv[key]
