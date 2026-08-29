@@ -1,0 +1,15 @@
+@stackline/once is an independent maintained continuation of once. It is not
+affiliated with or endorsed by Isaac Z. Schlueter, npm, or the upstream
+project.
+
+The implementation derives from the ISC-licensed once@1.4.0 artifact, the
+signed ISC-licensed upstream v1.4.1 tag, and the observable property-copying
+contract of ISC-licensed wrappy@1.0.2:
+
+Copyright (c) 2012-2022 Isaac Z. Schlueter and Contributors
+
+Stackline maintenance, packaging, declarations, documentation, hardening, and
+additional tests are Copyright (c) 2026 Stackline Maintainers.
+
+See LICENSE for the complete ISC terms and THIRD_PARTY_LICENSES.md for the
+provenance inventory.

@@ -1,0 +1,16 @@
+# @stackline/once
+
+Independent compatibility-first continuation of once@1.4.0 with the signed
+upstream v1.4.1 proto export fix, reserved wrapper-state safety, zero runtime
+dependencies, ES5 CommonJS, ESM default interop, and TypeScript declarations.
+
+- Documentation: https://alexandro.net/docs/vanilla/once/
+- Package: https://www.npmjs.com/package/@stackline/once
+- Repository: https://github.com/alexandroit/stackline-once
+- Full reference: ./llms-full.txt
+- README: ./README.md
+- Compatibility: ./COMPATIBILITY_CONTRACT.md
+- Migration: ./MIGRATION.md
+- Security: ./SECURITY.md
+- CommonJS example: ./examples/commonjs.cjs
+- ESM example: ./examples/esm.mjs

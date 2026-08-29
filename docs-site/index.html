@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compatibility-first one-shot function wrappers with safe public state and the restored prototype API.">
+  <title>@stackline/once | Alexandro.Net</title>
+  <link rel="canonical" href="https://alexandro.net/docs/vanilla/once/">
+  <link rel="alternate" type="text/plain" href="./llms.txt" title="LLM summary">
+  <link rel="alternate" type="text/plain" href="./llms-full.txt" title="Full LLM reference">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">Alexandro.Net maintained compatibility</p>
+    <h1>@stackline/once</h1>
+    <p class="lead">ES5 one-shot function wrappers with strict mode, observable state, safe callback decorations, and the documented prototype initializer restored.</p>
+    <pre><code>npm install @stackline/once@1.0.0</code></pre>
+    <pre><code>npm install once@npm:@stackline/once@1.0.0</code></pre>
+    <section>
+      <h2>Small and exact</h2>
+      <p>One CommonJS implementation, zero runtime dependencies, an exact Node.js 0.10.48-to-current matrix, browser bundling, and TypeScript 3.9/current declarations.</p>
+    </section>
+    <section>
+      <h2>Bounded corrections</h2>
+      <p>The signed upstream <code>v1.4.1</code> <code>proto</code> fix is present. Input <code>called</code>, <code>value</code>, and <code>onceError</code> decorations cannot suppress the first invocation.</p>
+    </section>
+    <section>
+      <h2>Global API stays opt-in</h2>
+      <p><code>once.proto()</code> retains the historical descriptors but mutates <code>Function.prototype</code>. Prefer direct wrappers in libraries.</p>
+    </section>
+    <nav aria-label="Documentation">
+      <a href="README.md">README</a>
+      <a href="COMPATIBILITY_CONTRACT.md">Compatibility contract</a>
+      <a href="MIGRATION.md">Migration</a>
+      <a href="SECURITY.md">Security</a>
+      <a href="THIRD_PARTY_LICENSES.md">Third-party licenses</a>
+      <a href="examples/commonjs.cjs">CommonJS example</a>
+      <a href="examples/esm.mjs">ESM example</a>
+      <a href="llms.txt">LLM summary</a>
+      <a href="llms-full.txt">Full LLM reference</a>
+      <a href="NOTICE">Notice</a>
+    </nav>
+    <p class="disclaimer">Independent Stackline continuation; not affiliated with or endorsed by Isaac Z. Schlueter, npm, or the upstream project.</p>
+    <p class="footer">Verified package documentation <span id="status">without client-side dependencies</span>.</p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

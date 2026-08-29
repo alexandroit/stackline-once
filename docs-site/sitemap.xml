@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://alexandro.net/docs/vanilla/once/</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/README.md</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/CHANGELOG.md</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/COMPATIBILITY_CONTRACT.md</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/MIGRATION.md</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/SECURITY.md</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/THIRD_PARTY_LICENSES.md</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/LICENSE</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/NOTICE</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/examples/commonjs.cjs</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/examples/esm.mjs</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/llms.txt</loc><lastmod>2026-08-29</lastmod></url>
+  <url><loc>https://alexandro.net/docs/vanilla/once/llms-full.txt</loc><lastmod>2026-08-29</lastmod></url>
+</urlset>

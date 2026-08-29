@@ -1,0 +1,115 @@
+{
+  "name": "@stackline/once",
+  "version": "1.0.0",
+  "description": "Compatibility-first one-shot function wrappers with safe callback decorations and the restored prototype API",
+  "type": "commonjs",
+  "sideEffects": false,
+  "main": "./once.js",
+  "types": "./once.d.ts",
+  "exports": {
+    ".": {
+      "types": "./once.d.cts",
+      "import": "./once.js",
+      "require": "./once.js",
+      "default": "./once.js"
+    },
+    "./once": {
+      "types": "./once.d.cts",
+      "import": "./once.js",
+      "require": "./once.js",
+      "default": "./once.js"
+    },
+    "./once.js": {
+      "types": "./once.d.cts",
+      "import": "./once.js",
+      "require": "./once.js",
+      "default": "./once.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "once.js",
+    "once.d.ts",
+    "once.d.cts",
+    "examples",
+    "CHANGELOG.md",
+    "COMPATIBILITY_CONTRACT.md",
+    "LICENSE",
+    "MIGRATION.md",
+    "NOTICE",
+    "README.md",
+    "SECURITY.md",
+    "THIRD_PARTY_LICENSES.md"
+  ],
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build": "node scripts/build.mjs",
+    "lint": "eslint once.js scripts test examples docs-site",
+    "test:upstream": "node --test test/upstream.test.cjs",
+    "test:differential": "node --test test/differential.test.cjs",
+    "test:contract": "node --test test/state.test.cjs test/decorations.test.cjs test/proto.test.cjs test/malformed-security.test.cjs",
+    "test:stress": "node --test test/stress.test.cjs",
+    "test:browser": "node scripts/check-browser.mjs",
+    "test:esm": "node test/esm.mjs",
+    "test:types": "node node_modules/typescript-3-9/bin/tsc -p test/types/tsconfig.legacy.json && node node_modules/typescript/bin/tsc -p test/types/tsconfig.commonjs.json && node node_modules/typescript/bin/tsc -p test/types/tsconfig.modern.json",
+    "test:runtime": "node scripts/check-runtime.mjs",
+    "test:downstream": "node scripts/test-downstreams.mjs",
+    "test": "npm run test:upstream && npm run test:differential && npm run test:contract && npm run test:stress && npm run test:browser && npm run test:esm && npm run test:types && npm run test:runtime",
+    "test:coverage": "c8 --all --include=once.js --check-coverage --lines 95 --functions 95 --branches 90 node --test test/upstream.test.cjs test/differential.test.cjs test/state.test.cjs test/decorations.test.cjs test/proto.test.cjs test/malformed-security.test.cjs",
+    "test:smoke": "node scripts/smoke-install.mjs",
+    "check:package": "publint && attw --pack .",
+    "check:licenses": "node scripts/check-licenses.mjs",
+    "check:sbom": "node scripts/check-sbom.mjs",
+    "check:release": "node scripts/check-release-metadata.mjs",
+    "pack:check": "npm pack --dry-run",
+    "artifact:prepare": "node scripts/create-artifact.mjs",
+    "audit:dependencies": "npm audit --omit=dev --audit-level=low",
+    "audit:all": "npm audit --audit-level=low",
+    "audit:signatures": "npm audit signatures",
+    "docs:build": "node scripts/build-docs.mjs",
+    "docs:check": "node scripts/check-docs.mjs",
+    "test:docs": "npm run docs:build && npm run docs:check",
+    "verify": "npm run clean && npm run lint && npm run build && npm test && npm run test:coverage && npm run test:smoke && npm run check:package && npm run check:release && npm run pack:check && npm run check:licenses && npm run check:sbom && npm run test:docs && npm run audit:dependencies && npm run audit:all && npm run audit:signatures",
+    "prepack": "npm run build"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandroit/stackline-once.git"
+  },
+  "homepage": "https://alexandro.net/docs/vanilla/once/",
+  "bugs": {
+    "url": "https://github.com/alexandroit/stackline-once/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "once",
+    "callback",
+    "function",
+    "commonjs",
+    "typescript",
+    "zero-dependency",
+    "stackline"
+  ],
+  "author": "Stackline Maintainers",
+  "contributors": [
+    "Isaac Z. Schlueter and Contributors"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@eslint/js": "10.0.1",
+    "acorn": "8.15.0",
+    "c8": "12.0.0",
+    "esbuild": "0.28.2",
+    "eslint": "10.9.1",
+    "once-upstream": "npm:once@1.4.0",
+    "publint": "0.3.24",
+    "typescript": "7.0.2",
+    "typescript-3-9": "npm:typescript@3.9.10"
+  }
+}

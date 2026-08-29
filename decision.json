@@ -1,0 +1,213 @@
+{
+  "schema": "stackline-package-decision-v1",
+  "observedAt": "2026-08-29T07:48:50Z",
+  "decidedAt": "2026-08-29T07:48:50Z",
+  "initialDecisionAt": "2026-08-29T07:13:38Z",
+  "package": "once",
+  "upstreamVersion": "1.4.0",
+  "target": "@stackline/once",
+  "targetVersion": "1.0.0",
+  "selectedQueueRank": 1,
+  "selectedQueueRankBasis": "EFFECTIVE_UNCONSUMED_SCOUT_INTAKE_RANK",
+  "canonicalQueueRank": null,
+  "startingState": "QUALIFIED",
+  "canonicalState": "BUILDING",
+  "decision": "GO",
+  "transition": "QUALIFIED -> RESEARCHING -> BUILDING -> RESEARCHING_ADOPTION_RECONCILIATION -> BUILDING",
+  "reasonCode": "UNPUBLISHED_TAGGED_API_FIX_WITH_BOUNDED_LEGACY_CJS_SURFACE_AND_TWO_QUALIFIED_DIRECT_ADOPTION_PATHS",
+  "reason": "The published once@1.4.0 documents once.proto() but fails to export it. Upstream committed and signed v1.4.1 with the missing export and a regression test, yet npm still has no 1.4.1 artifact. The small CommonJS surface can be characterized exactly, the published wrapper also mishandles callback properties that collide with its public called/value state, no maintained drop-in preserves strict/proto/state semantics, and two distinct active direct consumers provide a tested migration-PR path and a genuine maintainer-decision issue path.",
+  "problem": "once@1.4.0 assigns proto to the inner once function after exporting wrappy(once), so consumers receive only the callable default and strict exports. Its wrappy integration also copies caller callback properties after initializing wrapper state; a callback with an own called=true or value property can suppress its first invocation or expose a value before invocation.",
+  "implementationStartedAtDecisionWrite": false,
+  "adoptionPathReconciliation": {
+    "observedAt": "2026-08-29T07:48:50Z",
+    "result": "REPLACEMENT_ISSUE_TARGET_QUALIFIED_GO_RESUMED",
+    "initialDisqualification": {
+      "observedAt": "2026-08-29T07:38:00Z",
+      "repository": "jsreport/jsreport",
+      "reason": "Live cross-package deduplication found prior Stackline contact at jsreport/jsreport#1294. That @stackline/xlsx migration PR was closed unmerged after an explicit maintainer decline on 2026-08-26. The shared qualification gate prohibits any prior Stackline contact, so the issue path was never qualified even though no once-specific contact existed."
+    },
+    "replacementRepository": "adobe/alloy",
+    "replacementCommit": "dea7a2273989a4a1918416e0b03e9495c6ca78a3",
+    "replacementStatus": "QUALIFIED_DIFFERENT_REPOSITORY_ISSUE_PATH",
+    "qualification": "The current private reactor-extension-alloy workspace directly declares once@^1.4.0 and imports it in two shipped browser-view helpers. The repository is active and unarchived, its pull-request policy requires an issue before a change, authenticated GitHub reports issueCreationPolicy=ALL and viewerCanCreateIssues=true for alexandroit, and live/local searches found no Stackline contact, competing once migration or maintainer decline. The issue will ask maintainers to choose among internalizing the two helpers, preserving imports with a maintained alias, or retaining the historical dependency; it makes only a bounded supply-chain and bundle-edge maintenance claim.",
+    "implementationPaused": false,
+    "resumedAt": "2026-08-29T07:48:50Z",
+    "publicationStillRequires": "All local, downstream, hosted, immutable-artifact, registry and documentation gates must pass before publication or public outreach."
+  },
+  "transitions": [
+    {
+      "at": "2026-08-29T07:13:38Z",
+      "from": "QUALIFIED",
+      "to": "BUILDING",
+      "decision": "GO",
+      "reasonCode": "UNPUBLISHED_TAGGED_API_FIX_WITH_BOUNDED_LEGACY_CJS_SURFACE_AND_TWO_QUALIFIED_DIRECT_ADOPTION_PATHS"
+    },
+    {
+      "at": "2026-08-29T07:38:00Z",
+      "from": "BUILDING",
+      "to": "RESEARCHING_ADOPTION_RECONCILIATION",
+      "decision": "GO_REVOKED_PENDING_ADOPTION_RECONCILIATION",
+      "reasonCode": "INITIAL_ISSUE_TARGET_DISQUALIFIED_PRIOR_STACKLINE_CONTACT"
+    },
+    {
+      "at": "2026-08-29T07:48:50Z",
+      "from": "RESEARCHING_ADOPTION_RECONCILIATION",
+      "to": "BUILDING",
+      "decision": "GO",
+      "reasonCode": "QUALIFIED_ADOBE_ALLOY_ISSUE_PATH_RESTORES_TWO_REPOSITORY_ADOPTION_PLAN"
+    }
+  ],
+  "userPinResolution": "NOT_PINNED",
+  "selection": {
+    "requiredNextCycle": null,
+    "activeReleaseCheckpoint": null,
+    "codeReadyQueueEntries": 0,
+    "watchQueueEntries": 8,
+    "qualifiedIntakePredecessor": "graceful-fs",
+    "qualifiedIntakePredecessorDisposition": "TERMINAL_NO_GO",
+    "nextQualifiedByVerifiedReach": {
+      "name": "json-stringify-safe",
+      "weeklyDownloads": 35299758
+    },
+    "topologyNote": "once depends on WATCH package wrappy, but QUALIFIED intake outranks WATCH selection. The dependency edge must be resolved as a compatibility and dependency-minimization build gate rather than by lowering the selection gate."
+  },
+  "downloads": {
+    "count": 133027161,
+    "start": "2026-08-22",
+    "end": "2026-08-28",
+    "observedAt": "2026-08-29T07:04:00Z",
+    "source": "https://api.npmjs.org/downloads/point/2026-08-22:2026-08-28/once",
+    "caveat": "Download events include transitive and development installs and are not unique direct users. Reach orders qualified review; it is not the GO reason."
+  },
+  "registry": {
+    "packument": "https://registry.npmjs.org/once",
+    "latest": "1.4.0",
+    "latestPublishedAt": "2016-09-06T21:11:09.367Z",
+    "packumentModifiedAt": "2026-03-01T13:17:51.972Z",
+    "maintainers": ["isaacs"],
+    "license": "ISC",
+    "dependencies": {
+      "wrappy": "1"
+    },
+    "types": null,
+    "engines": null
+  },
+  "upstreamTarball": {
+    "url": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
+    "sha1": "583b1aa775961d4b113ac17d9c50baef9dd76bd1",
+    "sha256": "cf51460ba370c698f68b976e514d113497339ba018b6003e8e8eb569c6fccfcf",
+    "integrity": "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w=="
+  },
+  "upstreamRepository": {
+    "url": "https://github.com/isaacs/once",
+    "archived": false,
+    "observedMainHead": "0fbb41ec58d13f6f222fdccd03429a892606000b",
+    "observedMainHeadAt": "2025-10-25T19:07:37Z",
+    "currentMainLicense": "BlueOak-1.0.0",
+    "unpublishedFixTag": "v1.4.1",
+    "unpublishedFixCommit": "dd31e51b051eeb4c9df26bcea2f9155c4e41efd2",
+    "unpublishedFixTagObject": "336210117c3e3b585a796eb75967f4a471df7d39",
+    "tagSignatureVerifiedByGitHub": true,
+    "taggedLineLicense": "ISC"
+  },
+  "legalGate": {
+    "status": "PASS_CONDITIONAL",
+    "requirements": [
+      "Base compatibility and attribution on the exact ISC-licensed once@1.4.0 artifact and the signed ISC-licensed v1.4.1 tag.",
+      "Preserve the complete 2012-2022 Isaac Z. Schlueter and Contributors ISC notice.",
+      "Do not copy the later BlueOak-only main-branch license change without separate accounting.",
+      "State clearly that Stackline is not affiliated with the original maintainer."
+    ]
+  },
+  "securityGate": {
+    "osvExactVersionMatches": 0,
+    "dependencyOsvExactVersionMatches": 0,
+    "queried": ["once@1.4.0", "wrappy@1.0.2"],
+    "observedAt": "2026-08-29T07:04:00Z",
+    "source": "https://api.osv.dev/v1/query",
+    "caveat": "No OSV match is not a claim that either package is vulnerability-free."
+  },
+  "successorLandscape": {
+    "onetime": "onetime@8 is ESM-only, requires Node >=22, and does not preserve once.strict, once.proto, wrapper.called or wrapper.value as a drop-in contract.",
+    "native": "No native JavaScript primitive provides the same exported wrapper state, strict repeated-call error or opt-in Function.prototype helpers.",
+    "decision": "A small provenance-locked continuation has distinct compatibility value."
+  },
+  "compatibilityContract": [
+    "Callable CommonJS root export usable through direct scoped installation and npm alias under the historical once key",
+    "Root once(fn) executes fn once with unchanged this, arguments and return identity, then returns the cached value",
+    "once.strict(fn) throws on every call after the first and preserves the historical named error wording",
+    "Wrapper public called and value state before, during and after synchronous execution, re-entry and throws",
+    "Own enumerable callback decorations are copied without allowing called, value or onceError collisions to corrupt internal state",
+    "once.proto() is exported as a one-time initializer and installs configurable non-enumerable Function.prototype.once and onceStrict methods with historical descriptor and error behavior",
+    "Historical deep entry once/once.js and scoped @stackline/once/once.js remain available",
+    "No Node-only APIs; CommonJS and ordinary ESM-to-CJS interop work in Node and browser bundlers",
+    "No runtime dependency is required if the wrappy behavior can be reproduced with reserved-state safety"
+  ],
+  "risk": "The code is small but function wrappers expose subtle observable state, property-copying, re-entry, thrown-error, prototype-mutation and descriptor behavior. A compatibility regression can silently skip callbacks.",
+  "maintenanceCost": "LOW_BOUNDED",
+  "adoptionTargets": {
+    "pullRequest": {
+      "repository": "restify/clients",
+      "commit": "9c37cde35aa8a2bc3eca2cbaf64902ae61510ecb",
+      "manifest": "package.json",
+      "usage": ["lib/HttpClient.js", "lib/StringClient.js"],
+      "directSpec": "once@^1.4.0",
+      "runtime": "Node >=22.0.0",
+      "plan": "Use once as the historical dependency key with an npm alias to @stackline/once, add a focused callback-property regression, and run the repository's complete clean test/lint gates.",
+      "concreteBenefit": "Restify wraps caller-provided callbacks. The published wrappy path can copy an own called=true/value decoration over fresh wrapper state and suppress the first callback; the maintained replacement reserves its state keys while preserving other decorations."
+    },
+    "issue": {
+      "repository": "adobe/alloy",
+      "commit": "dea7a2273989a4a1918416e0b03e9495c6ca78a3",
+      "manifest": "packages/reactor-extension/package.json",
+      "usage": [
+        "packages/reactor-extension/src/view/utils/monitorForOriginatingErrors.js",
+        "packages/reactor-extension/src/view/components/objectEditor/helpers/validate.js"
+      ],
+      "directSpec": "once@^1.4.0",
+      "runtime": "Latest Node LTS with pnpm 11.11.0; browser-view output is bundled by the reactor-extension build",
+      "plan": "Follow the repository's issue-first policy and ask maintainers to choose among internalizing the two small helpers, preserving the historical import through an npm alias to @stackline/once, or intentionally retaining once@1.4.0. Disclose Stackline maintainership and make no defect, vulnerability or security claim.",
+      "concreteBenefit": "Both call sites need only at-most-once execution, while the workspace currently carries the 2016 once artifact and its wrappy runtime edge into a browser extension build. The maintainers therefore own a genuine source-versus-maintained-alias-versus-retain decision about a bounded supply-chain and bundle edge.",
+      "policy": "The PR template accepts changes only when related to an open issue. Authenticated GraphQL observed hasIssuesEnabled=true, isBlankIssuesEnabled=true, issueCreationPolicy=ALL and viewerCanCreateIssues=true for alexandroit.",
+      "deduplication": "Live searches returned zero for @stackline, stackline, isaacs/once, once@1.4.0, npm:once, wrappy, author:alexandroit and involves:alexandroit; a broad once result set contained no once-package migration. Local outreach and canonical mirrors contain no adobe/alloy contact."
+    },
+    "differentRepositories": true,
+    "liveDeduplicationAtDecision": "PASS_2026-08-29T07:48:50Z",
+    "disqualified": [
+      "expressjs/express: maintainers have already rejected removal twice and require prior discussion",
+      "mafintosh/pump: competing open once-removal pull request #63",
+      "mafintosh/end-of-stream: competing open once-removal pull request #34",
+      "node-formidable/formidable: once internalization already merged in #1083 and current main no longer directly declares once",
+      "jsreport/jsreport: prior Stackline PR #1294 was closed unmerged after explicit maintainer decline"
+    ]
+  },
+  "proofOfSuccess": [
+    "Published 1.4.0, signed v1.4.1, strict, proto, callback-property, re-entry, throw, malformed-input, descriptor and stress behavior is characterized and intentionally reconciled",
+    "Actual supported Node range, ordinary ESM interop, browser bundling, TypeScript 3.9 declarations when shipped, direct scoped install, historical-key npm alias and deep entries pass from the packed artifact",
+    "restify/clients and adobe/alloy reactor-extension pinned source paths pass baseline and replacement-focused tests on their exact commits",
+    "publint, Are the Types Wrong, license, SBOM, production audit, signature audit and reproducible-artifact gates pass",
+    "Linux, Windows and macOS workflows plus the declared Node matrix and CodeQL pass on one untagged release-candidate commit",
+    "One immutable artifact verifies byte-for-byte through Verdaccio, official npm, GitHub release and Alexandro.Net before the package is PUBLISHED",
+    "One qualified restify/clients pull request and one different-repository adobe/alloy maintainer-decision issue are written only after publication and a final live policy/dedup check"
+  ],
+  "stopCodes": [
+    "WRAPPY_PROPERTY_AND_RESERVED_STATE_COMPATIBILITY_FAILED",
+    "FUNCTION_PROTOTYPE_MUTATION_CONTRACT_FAILED",
+    "NO_SECOND_QUALIFIED_DIRECT_ADOPTION_TARGET",
+    "REQUIRED_LOCAL_OR_HOSTED_GATE_FAILED",
+    "REGISTRY_AUTHENTICATION_OR_IMMUTABLE_ARTIFACT_VERIFICATION_FAILED",
+    "ALEXANDRO_NET_DEPLOYMENT_OR_AVAILABILITY_CONTRACT_FAILED"
+  ],
+  "publication": {
+    "blockedByAdoptionReconciliation": false,
+    "artifactBuilt": false,
+    "verdaccioPublished": false,
+    "npmPublished": false,
+    "githubRepositoryCreated": false,
+    "githubTagCreated": false,
+    "documentationPublished": false,
+    "outreachCreated": false
+  },
+  "canonicalDriveRecordId": "1Y96CBcaUunsjBJmczOzcAhgvS35VoDe8",
+  "canonicalDriveRecordUrl": "https://drive.google.com/file/d/1Y96CBcaUunsjBJmczOzcAhgvS35VoDe8/view"
+}

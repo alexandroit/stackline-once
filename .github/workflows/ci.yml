@@ -1,0 +1,143 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ['stackline-v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Tests, types, browser, coverage, audits, and package quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm install --global npm@10.8.2
+      - run: npm ci
+      - run: npm run verify
+
+  package:
+    name: Packed production artifact
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm install --global npm@10.8.2
+      - run: npm ci
+      - run: npm run build
+      - run: mkdir artifact
+      - run: npm pack --ignore-scripts --pack-destination artifact
+      - run: sha512sum artifact/*.tgz > artifact/SHA512SUMS
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: npm-package
+          path: artifact/
+          if-no-files-found: error
+          retention-days: 14
+
+  legacy-runtime:
+    name: Node.js ${{ matrix.node }} packed CommonJS
+    needs: package
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [0.10.48, 4.9.1, 6.17.1, 8.17.0, 10.24.1, 12.22.12, 14.15.1]
+    steps:
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: npm-package
+          path: artifact
+      - run: mkdir unpacked && tar -xzf artifact/*.tgz -C unpacked
+      - name: Exercise packed ES5 CommonJS
+        run: >-
+          node -e "var once=require('./unpacked/package/once.js');
+          var calls=0;var fn=once(function(v){calls++;return v});
+          if(fn('ok')!=='ok'||fn('bad')!=='ok'||calls!==1||typeof once.strict!=='function'||typeof once.proto!=='function')process.exit(1)"
+
+  modern-runtime:
+    name: Node.js ${{ matrix.node }} packed consumer
+    needs: package
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [16.20.2, 18.20.8, 20.20.2, 22, 24, 26]
+    steps:
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: npm-package
+          path: artifact
+      - run: mkdir consumer && cd consumer && npm init --yes
+      - run: npm install --omit=dev --ignore-scripts --no-audit --no-fund ../artifact/*.tgz
+        working-directory: consumer
+      - run: node node_modules/@stackline/once/examples/commonjs.cjs
+        working-directory: consumer
+      - run: node node_modules/@stackline/once/examples/esm.mjs
+        working-directory: consumer
+
+  platform:
+    name: ${{ matrix.os }} compatibility surface
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 20.20.2
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:upstream
+      - run: npm run test:differential
+      - run: npm run test:contract
+      - run: npm run test:stress
+      - run: npm run test:browser
+      - run: npm run test:esm
+
+  downstream:
+    name: Pinned downstream ${{ matrix.target }} baseline and migration
+    needs: quality
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [restify-clients, adobe-alloy]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 26
+          cache: npm
+      - run: npm install --global npm@10.8.2
+      - run: npm ci
+      - run: npm run test:downstream
+        env:
+          STACKLINE_DOWNSTREAM: ${{ matrix.target }}

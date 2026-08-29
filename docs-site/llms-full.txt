@@ -1,0 +1,40 @@
+# @stackline/once full reference
+
+`@stackline/once@1.0.0` is an independent, compatibility-first continuation
+of `once@1.4.0`. It includes the signed upstream `v1.4.1` prototype-export fix
+and retains the published ISC license line. It has zero runtime dependencies,
+ES5 CommonJS source, ESM default-import interoperability, and TypeScript 3.9
+and current declarations.
+
+## API
+
+- `once(callback)` returns a wrapper that invokes `callback` at most once,
+  caches its result, preserves `this` and arguments, and exposes writable
+  `.called` and `.value` state.
+- `once.strict(callback)` returns the same public state but throws on every
+  invocation after the first.
+- `once.proto()` installs non-enumerable `.once()` and `.onceStrict()` methods
+  on `Function.prototype`. This global mutation is retained for compatibility
+  and remains opt-in; direct wrappers are preferred in libraries.
+
+## Compatibility corrections
+
+Reserved wrapper state (`called`, `value`, and `onceError`) cannot be replaced
+by callback decorations. Other enumerable own decorations—including inherited
+Object prototype names and an own `__proto__` property—are copied as ordinary
+wrappy-compatible values. Wrapper state becomes sticky before the callback is
+entered, including when the callback throws.
+
+The declared runtime floor is Node.js 0.10.48. The implementation is ES5 and
+the release gate parses that source as ES5, exercises the declared historical
+runtime, and tests current Node.js, browser bundling, CommonJS, ESM default
+interop, and TypeScript 3.9/current consumers.
+
+## Install and migration
+
+Scoped install: `npm install @stackline/once`
+
+Historical-key alias: `npm install once@npm:@stackline/once`
+
+Repository: https://github.com/alexandroit/stackline-once
+Security policy: https://github.com/alexandroit/stackline-once/security/policy
