@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
+import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
 import { build } from 'esbuild'
 
 const result = await build({
   bundle: true,
-  entryPoints: [new URL('../once.js', import.meta.url).pathname],
+  entryPoints: [fileURLToPath(new URL('../once.js', import.meta.url))],
   format: 'iife',
   globalName: 'StacklineOnce',
   platform: 'browser',
