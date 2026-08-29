@@ -3,7 +3,7 @@
 Observed: 2026-08-29T07:13:38Z
 Reconciled: 2026-08-29T07:48:50Z
 
-Public outreach is forbidden until `@stackline/once@1.0.0` is verified on official npm, GitHub and Alexandro.Net. The PR and issue must remain in different repositories and pass a final live deduplication and repository-policy check.
+Before public outreach, `@stackline/once@1.0.0` had to be verified on official npm, GitHub and Alexandro.Net. The PR and issue had to remain in different repositories and pass a final live deduplication and repository-policy check. Those gates passed before the two contacts below were created.
 
 ## Pull request candidate — `restify/clients`
 
@@ -44,6 +44,47 @@ Public outreach is forbidden until `@stackline/once@1.0.0` is verified on offici
 - Disclosure: identify the contributor as the maintainer of the Stackline option and present retain/internalize/alias neutrally
 
 This candidate is in a different repository from `restify/clients`: **PASS**. Local implementation may resume, but no issue or pull request is eligible before the package is published and the exact live policy/contact/competitor checks are repeated.
+
+## Completed release-local coverage
+
+### Pull request — `restify/clients#252`
+
+- URL: <https://github.com/restify/clients/pull/252>
+- Created: `2026-08-29T10:26:59Z`
+- Base: `9c37cde35aa8a2bc3eca2cbaf64902ae61510ecb`
+- Head: `af0e976d47258ec8c83b5fa0d1ccc6177ea5b23d`
+- Scope: only `package.json` and `test/HttpClient.test.js`, 47 additions and
+  one deletion
+- Migration: `once: npm:@stackline/once@1.0.0`; all source imports unchanged
+- Verification: official-registry alias identity/SRI/tree, lint, codestyle,
+  commitlint, diff, consumer smoke, 230/230 deterministic tests and 1/1
+  focused regression PASS on Node 22, 24 and 26
+- Full observational run: 232 passing, six exact allowlisted host failures,
+  zero other failures
+- Remote: open and mergeable/review-blocked; external-fork workflow run
+  `33247849839` awaits maintainer approval with zero jobs, not a test failure
+- Disclosure: exact independent-maintainer and non-affiliation disclosure;
+  no vulnerability claim
+
+### Issue — `adobe/alloy#1565`
+
+- URL: <https://github.com/adobe/alloy/issues/1565>
+- Created: `2026-08-29T10:21:53Z`
+- Evidence commit: `dea7a2273989a4a1918416e0b03e9495c6ca78a3`
+- Request: choose local ownership, the exact historical-key npm alias, or
+  intentional retention
+- Verification: direct declaration and both imports remained current; clean
+  official-registry alias/ESM smoke and the complete baseline/migration target
+  proof passed
+- Disclosure: Stackline maintainership stated; no vulnerability or bundle-size
+  claim; no exception requested to Adobe's normal two-day release-age hold
+
+The repositories differ: **PASS**. Adoption coverage for
+`@stackline/once@1.0.0` is **COMPLETE** and no active release checkpoint
+remains. Do not follow up unsolicited.
+
+Canonical Drive adoption record: `1XJh62EjwUZ-EeOAXbaFbyA6b6BGIdT0x`,
+<https://drive.google.com/file/d/1XJh62EjwUZ-EeOAXbaFbyA6b6BGIdT0x/view>.
 
 ## Excluded current candidates
 

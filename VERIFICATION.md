@@ -138,3 +138,83 @@ NOTICE rather than coupling the gate to one Markdown line length.
 Local success does not substitute for hosted CI/CodeQL, Verdaccio, official
 npm, GitHub release, or Alexandro.Net verification. Record those separately
 only after they actually occur.
+
+## Release verification — 2026-08-29
+
+Release source commit `ea00ab9a1ca2badbdfddaeb9236fb689fd064067`
+passed hosted main CI `33244425614` and CodeQL `33244425647`. The immutable tag
+points to that exact commit. Tag CI `33245165470` and tag CodeQL `33245165508`
+are successful. An Adobe migrated-build job initially hung and ended with a
+target-owned cleanup `ENOTEMPTY`; its unchanged failed-job rerun passed. No
+gate was skipped or weakened.
+
+The final accepted artifact supersedes the earlier 7,489-byte local candidate
+snapshot described above. A local-versus-hosted mode mismatch was corrected
+before any registry write by normalizing tracked files to 0644 and rebuilding.
+The one accepted artifact is 7,488 bytes, contains 14 files, unpacks to 21,145
+bytes, and has:
+
+- SHA-1 `cf9d4679e473f75ae8bc1e61d95a494bd3088cd0`
+- SHA-256 `dd95a3455ed26d3e40c8d6fe107662b4475addf4ca6a6ef9fdb1b130ab3e1880`
+- SHA-512 `abee3a37fc2898707f6cbb32f9dc33fda6c31618652013f39074db1e6003f537ce19cf99630d8dd7dae3e0b3b6667174bb487e5371a77e5687798748757543cf`
+- SRI `sha512-q+46N/womHB/bLsy+dwz/abDFhhlIBPzkHTbHmAD9TfOGc+ZYw2N19rj4LO2ZnF0u0h+U3GnflaHeYdIdXVDzw==`
+
+The exact tarball, inventory, licenses, SBOM and checksum files were preserved.
+Verdaccio publication/fetch and direct/alias consumers passed first. Official
+npm publication occurred once at `2026-08-29T09:12:21.298Z`; its packument,
+signature, tarball bytes, SHA-1, SRI, inventory and direct/alias consumers all
+passed after propagation. The immutable GitHub release was published at
+`2026-08-29T10:02:01Z` with nine exact assets; the downloaded tarball and API
+digest match the accepted SHA-256.
+
+## Production documentation
+
+Private catalog deploy commit `f0cb153cce5c9fc9631fc3d9441832be1d69ac00`
+passed CI `33247256501`; deployment-memory commit
+`64b9a7d5d9bf5c67f5731d737eb0cc80bc0be78f` passed CI `33247540347`.
+Repository privacy was not weakened. Local `npm test` validates 44 published
+packages, the root build and compatibility build.
+
+Production matches 34 root files, 34 compatibility files and 18 package files.
+The root and docs aggregate sitemaps each contain exactly 13 once routes.
+Public root SHA-256 was
+`f927fbc1c7c151ca76b835a072f43c1487b5ebe8319d044bdf5736d0d996a7ae`;
+compatibility catalog SHA-256 was
+`0e7b9c5fd617adbe202f9bc6db117bd1f80e0f9f028f7633eff3ed11fdc2da48`;
+the CommonJS and ESM examples were
+`c03f0c0974053a61ed4244301df8a7da9cec8992ca17d7c81ec5b21625876741`
+and `13d22d8ceccecbbd2370c27f958a55928bebbca0ec6c7e9a0c86cfe05e0d9028`.
+
+Cloudflare initially email-obfuscated the two npm install commands. A tested
+source guard was deployed; the edge now preserves both exact commands and has
+no obfuscation markers or decoder. HTTP/2 origin and public IPv4/IPv6 checks,
+expected MIME types, ordinary DNS, redirect path/query preservation and
+unknown-host rejection passed. One hundred IPv4 plus twenty IPv6 bounded edge
+requests returned 200 while listen drops stayed 692 and overflows stayed zero.
+Nginx was not replaced or reloaded.
+
+## Adoption verification
+
+- Pull request: <https://github.com/restify/clients/pull/252>, base
+  `9c37cde35aa8a2bc3eca2cbaf64902ae61510ecb`, head
+  `af0e976d47258ec8c83b5fa0d1ccc6177ea5b23d`, two changed files.
+- Actual-registry migration: exact historical-key alias, official SRI and
+  zero-dependency identity PASS.
+- Restify gates: lint, codestyle, commitlint, diff, consumer smoke, 230/230
+  deterministic tests and 1/1 focused regression PASS on Node 22/24/26.
+- Full observational Node 26 result: 232 passing, six exact allowlisted host
+  failures and zero other failures.
+- The external-fork workflow awaits maintainer approval and has zero jobs; the
+  action-required state is not a test failure.
+- Issue: <https://github.com/adobe/alloy/issues/1565>, evidence base
+  `dea7a2273989a4a1918416e0b03e9495c6ca78a3`, no repository mutation.
+- Both contacts disclose Stackline maintainership and make no vulnerability or
+  bundle-size claim. The issue offers internalization, retention and aliasing
+  as neutral choices.
+- Different-repository check: **PASS**. Adoption coverage: **COMPLETE**. No
+  unsolicited follow-up is authorized.
+
+## Canonical record
+
+Canonical Drive release verification: `1qT20g8pF3pJUImXJhzwqW2Pvw6x1H_qT`,
+<https://drive.google.com/file/d/1qT20g8pF3pJUImXJhzwqW2Pvw6x1H_qT/view>.

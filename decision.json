@@ -1,6 +1,6 @@
 {
   "schema": "stackline-package-decision-v1",
-  "observedAt": "2026-08-29T07:48:50Z",
+  "observedAt": "2026-08-29T10:34:20Z",
   "decidedAt": "2026-08-29T07:48:50Z",
   "initialDecisionAt": "2026-08-29T07:13:38Z",
   "package": "once",
@@ -11,9 +11,9 @@
   "selectedQueueRankBasis": "EFFECTIVE_UNCONSUMED_SCOUT_INTAKE_RANK",
   "canonicalQueueRank": null,
   "startingState": "QUALIFIED",
-  "canonicalState": "BUILDING",
+  "canonicalState": "PUBLISHED",
   "decision": "GO",
-  "transition": "QUALIFIED -> RESEARCHING -> BUILDING -> RESEARCHING_ADOPTION_RECONCILIATION -> BUILDING",
+  "transition": "QUALIFIED -> RESEARCHING -> BUILDING -> RESEARCHING_ADOPTION_RECONCILIATION -> BUILDING -> PUBLISHED",
   "reasonCode": "UNPUBLISHED_TAGGED_API_FIX_WITH_BOUNDED_LEGACY_CJS_SURFACE_AND_TWO_QUALIFIED_DIRECT_ADOPTION_PATHS",
   "reason": "The published once@1.4.0 documents once.proto() but fails to export it. Upstream committed and signed v1.4.1 with the missing export and a regression test, yet npm still has no 1.4.1 artifact. The small CommonJS surface can be characterized exactly, the published wrapper also mishandles callback properties that collide with its public called/value state, no maintained drop-in preserves strict/proto/state semantics, and two distinct active direct consumers provide a tested migration-PR path and a genuine maintainer-decision issue path.",
   "problem": "once@1.4.0 assigns proto to the inner once function after exporting wrappy(once), so consumers receive only the callable default and strict exports. Its wrappy integration also copies caller callback properties after initializing wrapper state; a callback with an own called=true or value property can suppress its first invocation or expose a value before invocation.",
@@ -55,6 +55,13 @@
       "to": "BUILDING",
       "decision": "GO",
       "reasonCode": "QUALIFIED_ADOBE_ALLOY_ISSUE_PATH_RESTORES_TWO_REPOSITORY_ADOPTION_PLAN"
+    },
+    {
+      "at": "2026-08-29T10:34:20Z",
+      "from": "BUILDING",
+      "to": "PUBLISHED",
+      "decision": "GO_RELEASE_COMPLETE",
+      "reasonCode": "IMMUTABLE_REGISTRY_RELEASE_DOCUMENTATION_AND_DIFFERENT_REPOSITORY_ADOPTION_COVERAGE_VERIFIED"
     }
   ],
   "userPinResolution": "NOT_PINNED",
@@ -200,13 +207,60 @@
   ],
   "publication": {
     "blockedByAdoptionReconciliation": false,
-    "artifactBuilt": false,
-    "verdaccioPublished": false,
-    "npmPublished": false,
-    "githubRepositoryCreated": false,
-    "githubTagCreated": false,
-    "documentationPublished": false,
-    "outreachCreated": false
+    "artifactBuilt": true,
+    "sourceCommit": "ea00ab9a1ca2badbdfddaeb9236fb689fd064067",
+    "artifactFilename": "stackline-once-1.0.0.tgz",
+    "artifactBytes": 7488,
+    "artifactSha1": "cf9d4679e473f75ae8bc1e61d95a494bd3088cd0",
+    "artifactSha256": "dd95a3455ed26d3e40c8d6fe107662b4475addf4ca6a6ef9fdb1b130ab3e1880",
+    "artifactSha512": "abee3a37fc2898707f6cbb32f9dc33fda6c31618652013f39074db1e6003f537ce19cf99630d8dd7dae3e0b3b6667174bb487e5371a77e5687798748757543cf",
+    "artifactIntegrity": "sha512-q+46N/womHB/bLsy+dwz/abDFhhlIBPzkHTbHmAD9TfOGc+ZYw2N19rj4LO2ZnF0u0h+U3GnflaHeYdIdXVDzw==",
+    "verdaccioPublished": true,
+    "npmPublished": true,
+    "npmPublishedAt": "2026-08-29T09:12:21.298Z",
+    "npmUrl": "https://www.npmjs.com/package/@stackline/once",
+    "githubRepositoryCreated": true,
+    "githubRepositoryUrl": "https://github.com/alexandroit/stackline-once",
+    "githubTagCreated": true,
+    "githubReleaseImmutable": true,
+    "githubReleasePublishedAt": "2026-08-29T10:02:01Z",
+    "githubReleaseUrl": "https://github.com/alexandroit/stackline-once/releases/tag/stackline-v1.0.0",
+    "documentationPublished": true,
+    "documentationUrl": "https://alexandro.net/docs/vanilla/once/",
+    "catalogDeployCommit": "f0cb153cce5c9fc9631fc3d9441832be1d69ac00",
+    "catalogDeploymentRecordCommit": "64b9a7d5d9bf5c67f5731d737eb0cc80bc0be78f",
+    "outreachCreated": true,
+    "completedAt": "2026-08-29T10:34:20Z",
+    "releaseDebt": null
+  },
+  "adoptionOutcome": {
+    "coverage": "COMPLETE",
+    "pullRequest": {
+      "repository": "restify/clients",
+      "url": "https://github.com/restify/clients/pull/252",
+      "baseCommit": "9c37cde35aa8a2bc3eca2cbaf64902ae61510ecb",
+      "headCommit": "af0e976d47258ec8c83b5fa0d1ccc6177ea5b23d",
+      "status": "OPEN"
+    },
+    "issue": {
+      "repository": "adobe/alloy",
+      "url": "https://github.com/adobe/alloy/issues/1565",
+      "evidenceCommit": "dea7a2273989a4a1918416e0b03e9495c6ca78a3",
+      "status": "OPEN"
+    },
+    "differentRepositories": true,
+    "differentRepositoryCheck": "PASS",
+    "activeReleaseCheckpoint": null,
+    "unsolicitedFollowUpAuthorized": false
+  },
+  "canonicalDriveRecords": {
+    "decision": "1Y96CBcaUunsjBJmczOzcAhgvS35VoDe8",
+    "projectMemory": "1Z-9wbexq8JdUo-g8zhFjaCKKpJMuLFZ1",
+    "releaseVerification": "1qT20g8pF3pJUImXJhzwqW2Pvw6x1H_qT",
+    "adoptionTargets": "1XJh62EjwUZ-EeOAXbaFbyA6b6BGIdT0x",
+    "registryHandoff": "1Ime65bOSxtSZVME_gYaFzpA7JwOXigKe",
+    "pullRequestEvent": "1DdBfvC2nUeF5seEB4jhtin8C5KrE92MT",
+    "issueEvent": "1gV7bXpM-KmwkSjZ8vje2d9YnMwzI_847"
   },
   "canonicalDriveRecordId": "1Y96CBcaUunsjBJmczOzcAhgvS35VoDe8",
   "canonicalDriveRecordUrl": "https://drive.google.com/file/d/1Y96CBcaUunsjBJmczOzcAhgvS35VoDe8/view"
