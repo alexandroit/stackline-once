@@ -1,6 +1,6 @@
 # @stackline/once full reference
 
-`@stackline/once@1.0.0` is an independent, compatibility-first continuation
+`@stackline/once@1.0.1` is an independent, compatibility-first continuation
 of `once@1.4.0`. It includes the signed upstream `v1.4.1` prototype-export fix
 and retains the published ISC license line. It has zero runtime dependencies,
 ES5 CommonJS source, ESM default-import interoperability, and TypeScript 3.9

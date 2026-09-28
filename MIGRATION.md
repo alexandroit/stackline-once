@@ -7,7 +7,7 @@ Existing CommonJS applications can keep their historical imports:
 ```json
 {
   "dependencies": {
-    "once": "npm:@stackline/once@1.0.0"
+    "once": "npm:@stackline/once@1.0.1"
   }
 }
 ```
@@ -25,7 +25,7 @@ The identity should be `@stackline/once` while `require('once')` and
 
 ## Direct scoped import
 
-New code can depend on `@stackline/once@1.0.0` and change imports to:
+New code can depend on `@stackline/once@1.0.1` and change imports to:
 
 ```js
 var once = require('@stackline/once')
