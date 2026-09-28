@@ -79,7 +79,7 @@ console.log('packed ESM default interop passed')
   ]) {
     const installed = JSON.parse(await readFile(path.join(installation, 'package.json'), 'utf8'))
     assert.equal(installed.name, '@stackline/once')
-    assert.equal(installed.version, '1.0.0')
+    assert.equal(installed.version, '1.0.1')
     assert.equal(installed.dependencies, undefined)
   }
 

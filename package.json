@@ -1,6 +1,6 @@
 {
   "name": "@stackline/once",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compatibility-first one-shot function wrappers with safe callback decorations and the restored prototype API",
   "type": "commonjs",
   "sideEffects": false,
@@ -93,7 +93,8 @@
     "commonjs",
     "typescript",
     "zero-dependency",
-    "stackline"
+    "stackline",
+    "call-once"
   ],
   "author": "Stackline Maintainers",
   "contributors": [

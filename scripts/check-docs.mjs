@@ -80,7 +80,7 @@ assert.deepEqual(metadata, {
   name: '@stackline/once',
   productionDependencies: 0,
   runtimeFloor: 'Node.js 0.10.48',
-  version: '1.0.0'
+  version: '1.0.1'
 })
 
 console.log('Static documentation inventory, canonical routes, examples, runtime boundary, attribution, and crawl files passed.')

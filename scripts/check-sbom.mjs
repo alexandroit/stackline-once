@@ -38,7 +38,7 @@ try {
   assert.deepEqual(tree.dependencies['@stackline/once'].dependencies, undefined)
 
   const sbom = JSON.parse(run(['sbom', '--omit=dev', '--sbom-format=cyclonedx'], consumer))
-  const reference = '@stackline/once@1.0.0'
+  const reference = '@stackline/once@1.0.1'
   const component = sbom.components.find((entry) => entry['bom-ref'] === reference)
   assert.ok(component, `SBOM must contain ${reference}`)
   const edge = sbom.dependencies.find((entry) => entry.ref === reference)

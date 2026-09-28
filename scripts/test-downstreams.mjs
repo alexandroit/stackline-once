@@ -97,7 +97,7 @@ async function replaceDirectOnce (repository, manifestRelative, tarball) {
 async function installedIdentity (repository, packageRelative) {
   const manifest = JSON.parse(await readFile(path.join(repository, packageRelative, 'package.json'), 'utf8'))
   assert.equal(manifest.name, '@stackline/once')
-  assert.equal(manifest.version, '1.0.0')
+  assert.equal(manifest.version, '1.0.1')
   assert.deepEqual(manifest.dependencies, undefined)
   return {
     license: manifest.license,
@@ -276,7 +276,7 @@ async function testRestify (tarball) {
     baselineSuite,
     commit,
     installed,
-    migration: 'once=file:<packed @stackline/once@1.0.0>',
+    migration: 'once=file:<packed @stackline/once@1.0.1>',
     migratedSuite,
     name: 'restify/clients',
     realPathReservedStateRegression: '1 passing',
@@ -405,7 +405,7 @@ async function testAdobe (tarball) {
     },
     commit,
     installed,
-    migration: 'packages/reactor-extension once=file:<packed @stackline/once@1.0.0>',
+    migration: 'packages/reactor-extension once=file:<packed @stackline/once@1.0.1>',
     name: 'adobe/alloy',
     pnpm: pnpm(['--version'], migrated).stdout.trim(),
     preservedHistoricalImports: 2,
