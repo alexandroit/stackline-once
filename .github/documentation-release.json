@@ -4,7 +4,7 @@
     {
       "name": "@stackline/once",
       "path": "README.md",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "baselineVersion": "1.0.1",
       "keywords": [
         "stackline",
@@ -21,8 +21,8 @@
       "homepage": "https://alexandro.net/docs/vanilla/once/",
       "baselineTarball": "https://registry.npmjs.org/@stackline/once/-/once-1.0.1.tgz",
       "baselineIntegrity": "sha512-2qYGWdwzRFhAHFP8tsJomku1YewNPnCsRl18hGnPSvSBMldhM73VK/4qQs50xc9+noYlbE9sJOUVVlGD7rs+Xg==",
-      "expectedSha512": "b655b6f31e51f98538c715a02229036fe6da80872db9d69484d7ab6b5752ebc5e3693a00b2f5090ebb309c032523d9ee3d432c9178e7516629be9258b8adb913",
-      "tag": "docs-stackline-once-v1.0.2"
+      "expectedSha512": "9f9d9959007455402d814151e0333c2b24ab3aed1ad27b78299c6239e14c63134fa861360592304f6c5a1d151233a76bce59b7c134181a0fb7a0d8b2c055ee6b",
+      "tag": "docs-stackline-once-v1.0.3"
     }
   ]
 }
