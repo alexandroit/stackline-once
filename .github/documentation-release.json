@@ -1,0 +1,28 @@
+{
+  "repository": "alexandroit/stackline-once",
+  "packages": [
+    {
+      "name": "@stackline/once",
+      "path": "README.md",
+      "version": "1.0.2",
+      "baselineVersion": "1.0.1",
+      "keywords": [
+        "stackline",
+        "npm-package",
+        "once",
+        "typescript",
+        "nodejs",
+        "callback",
+        "function",
+        "commonjs",
+        "zero-dependency",
+        "call-once"
+      ],
+      "homepage": "https://alexandro.net/docs/vanilla/once/",
+      "baselineTarball": "https://registry.npmjs.org/@stackline/once/-/once-1.0.1.tgz",
+      "baselineIntegrity": "sha512-2qYGWdwzRFhAHFP8tsJomku1YewNPnCsRl18hGnPSvSBMldhM73VK/4qQs50xc9+noYlbE9sJOUVVlGD7rs+Xg==",
+      "expectedSha512": "b655b6f31e51f98538c715a02229036fe6da80872db9d69484d7ab6b5752ebc5e3693a00b2f5090ebb309c032523d9ee3d432c9178e7516629be9258b8adb913",
+      "tag": "docs-stackline-once-v1.0.2"
+    }
+  ]
+}
