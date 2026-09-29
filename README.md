@@ -4,13 +4,13 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/once.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/once)
 [![license](https://img.shields.io/npm/l/@stackline/once.svg?style=flat-square)](https://github.com/alexandroit/stackline-once)
-[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-once-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-once)
+[![GitHub repository](https://img.shields.io/badge/GitHub-repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-once)
 [![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/once/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
 **[Documentation](https://alexandro.net/docs/vanilla/once/)** | **[npm](https://www.npmjs.com/package/@stackline/once)** | **[Issues](https://github.com/alexandroit/stackline-once/issues)** | **[Repository](https://github.com/alexandroit/stackline-once)**
 
-**Current package version:** `1.0.2`
+**Current package version:** `1.0.3`
 
 ---
 
@@ -27,7 +27,7 @@ with or endorsed by Isaac Z. Schlueter, npm, or the upstream project.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/once@1.0.2` |
+| Package | `@stackline/once@1.0.3` |
 | Node.js runtime | `>=0.10.0` |
 | CommonJS / primary entry | `./once.js` |
 | Type declarations | `./once.d.ts` |
@@ -41,13 +41,13 @@ with or endorsed by Isaac Z. Schlueter, npm, or the upstream project.
 For new code:
 
 ```sh
-npm install @stackline/once@1.0.2
+npm install @stackline/once@1.0.3
 ```
 
 To preserve an existing `require('once')` without source changes:
 
 ```sh
-npm install once@npm:@stackline/once@1.0.2
+npm install once@npm:@stackline/once@1.0.3
 ```
 
 ## Usage
