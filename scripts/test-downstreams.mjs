@@ -339,6 +339,7 @@ async function inspectBuiltViewWrappyProvenance (repository) {
 }
 
 async function assertAdobeDirectOnceEdge (repository) {
+  const candidateVersion = packageMetadata.version.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const lock = await readFile(path.join(repository, 'pnpm-lock.yaml'), 'utf8')
   const marker = '  packages/reactor-extension:\n'
   const start = lock.indexOf(marker)
@@ -346,14 +347,14 @@ async function assertAdobeDirectOnceEdge (repository) {
   const remainder = lock.slice(start + marker.length)
   const nextImporter = remainder.search(/\n {2}\S/)
   const importer = nextImporter === -1 ? remainder : remainder.slice(0, nextImporter)
-  assert.match(importer, /\n {6}once:\n {8}specifier: file:[^\n]+stackline-once-1\.0\.1\.tgz\n {8}version: '@stackline\/once@file:[^']+'/)
+  assert.match(importer, new RegExp(`\\n {6}once:\\n {8}specifier: file:[^\\n]+stackline-once-${candidateVersion}\\.tgz\\n {8}version: '@stackline/once@file:[^']+'`))
   assert.doesNotMatch(importer, /wrappy/)
   assert.match(lock, /\n {2}'@stackline\/once@file:[^']+': \{\}\n/)
 
   const productionWhyOnce = pnpm(['--filter', 'reactor-extension-alloy', 'why', 'once', '--prod'], repository).stdout.trim()
   const productionWhyWrappy = pnpm(['--filter', 'reactor-extension-alloy', 'why', 'wrappy', '--prod'], repository).stdout.trim()
   const developmentWhyWrappy = pnpm(['--filter', 'reactor-extension-alloy', 'why', 'wrappy'], repository).stdout.trim()
-  assert.match(productionWhyOnce, /@stackline\/once@1\.0\.1/)
+  assert.match(productionWhyOnce, new RegExp(`@stackline/once@${candidateVersion}(?:\\s|$)`))
   assert.match(productionWhyOnce, /reactor-extension-alloy@2\.37\.2-beta\.1 \(dependencies\)/)
   assert.equal(productionWhyWrappy, '')
   assert.match(developmentWhyWrappy, /wrappy@1\.0\.2/)

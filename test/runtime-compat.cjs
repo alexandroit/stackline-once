@@ -1,6 +1,8 @@
 var assert = require('assert')
 var once = require('../once.js')
 
+if (process.argv[2]) assert.strictEqual(process.versions.node, process.argv[2], 'requested Node.js runtime was not selected')
+
 assert.strictEqual(typeof once, 'function')
 assert.strictEqual(typeof once.strict, 'function')
 assert.strictEqual(typeof once.proto, 'function')

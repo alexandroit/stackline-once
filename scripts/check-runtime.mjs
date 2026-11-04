@@ -14,17 +14,17 @@ const versions = [
   '16.20.2',
   '18.20.8',
   '20.20.2',
-  '22.22.0',
-  '24.7.0',
-  '26.0.0'
+  '22.23.4',
+  '24.22.2',
+  '26.12.1'
 ]
 
 for (const version of versions) {
-  execFileSync(npx, ['--yes', `--package=node@${version}`, 'node', 'test/runtime-compat.cjs'], {
+  execFileSync(npx, ['--yes', `--package=node@${version}`, 'node', 'test/runtime-compat.cjs', version], {
     cwd: root,
     env: { ...process.env, NO_UPDATE_NOTIFIER: '1' },
     stdio: 'inherit'
   })
 }
 
-execFileSync(process.execPath, ['test/runtime-compat.cjs'], { cwd: root, stdio: 'inherit' })
+execFileSync(process.execPath, ['test/runtime-compat.cjs', process.versions.node], { cwd: root, stdio: 'inherit' })
