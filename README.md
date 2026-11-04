@@ -27,7 +27,7 @@ with or endorsed by Isaac Z. Schlueter, npm, or the upstream project.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/once@1.0.3` |
+| Package | `@stackline/once@1.0.4` |
 | Node.js runtime | `>=0.10.0` |
 | CommonJS / primary entry | `./once.js` |
 | Type declarations | `./once.d.ts` |
@@ -41,13 +41,13 @@ with or endorsed by Isaac Z. Schlueter, npm, or the upstream project.
 For new code:
 
 ```sh
-npm install @stackline/once@1.0.3
+npm install @stackline/once@1.0.4
 ```
 
 To preserve an existing `require('once')` without source changes:
 
 ```sh
-npm install once@npm:@stackline/once@1.0.3
+npm install once@npm:@stackline/once@1.0.4
 ```
 
 ## Usage

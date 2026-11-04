@@ -7,6 +7,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
+const packageMetadata = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'))
 const temporary = await mkdtemp(path.join(os.tmpdir(), 'stackline-once-downstreams-'))
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 const requested = process.env.STACKLINE_DOWNSTREAM || 'all'
@@ -97,7 +98,7 @@ async function replaceDirectOnce (repository, manifestRelative, tarball) {
 async function installedIdentity (repository, packageRelative) {
   const manifest = JSON.parse(await readFile(path.join(repository, packageRelative, 'package.json'), 'utf8'))
   assert.equal(manifest.name, '@stackline/once')
-  assert.equal(manifest.version, '1.0.1')
+  assert.equal(manifest.version, packageMetadata.version)
   assert.deepEqual(manifest.dependencies, undefined)
   return {
     license: manifest.license,
@@ -276,7 +277,7 @@ async function testRestify (tarball) {
     baselineSuite,
     commit,
     installed,
-    migration: 'once=file:<packed @stackline/once@1.0.1>',
+    migration: `once=file:<packed ${packageMetadata.name}@${packageMetadata.version}>`,
     migratedSuite,
     name: 'restify/clients',
     realPathReservedStateRegression: '1 passing',
@@ -405,7 +406,7 @@ async function testAdobe (tarball) {
     },
     commit,
     installed,
-    migration: 'packages/reactor-extension once=file:<packed @stackline/once@1.0.1>',
+    migration: `packages/reactor-extension once=file:<packed ${packageMetadata.name}@${packageMetadata.version}>`,
     name: 'adobe/alloy',
     pnpm: pnpm(['--version'], migrated).stdout.trim(),
     preservedHistoricalImports: 2,

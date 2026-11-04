@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
+const metadata = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'))
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
 const temporary = await mkdtemp(path.join(os.tmpdir(), 'stackline-once-sbom-'))
 const consumer = path.join(temporary, 'consumer')
@@ -38,7 +39,7 @@ try {
   assert.deepEqual(tree.dependencies['@stackline/once'].dependencies, undefined)
 
   const sbom = JSON.parse(run(['sbom', '--omit=dev', '--sbom-format=cyclonedx'], consumer))
-  const reference = '@stackline/once@1.0.1'
+  const reference = `${metadata.name}@${metadata.version}`
   const component = sbom.components.find((entry) => entry['bom-ref'] === reference)
   assert.ok(component, `SBOM must contain ${reference}`)
   const edge = sbom.dependencies.find((entry) => entry.ref === reference)

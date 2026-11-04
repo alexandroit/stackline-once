@@ -5,7 +5,7 @@ const metadata = JSON.parse(await readFile(new URL('../package.json', import.met
 const decision = JSON.parse(await readFile(new URL('../decision.json', import.meta.url), 'utf8'))
 
 assert.equal(metadata.name, '@stackline/once')
-assert.equal(metadata.version, '1.0.1')
+assert.match(metadata.version, /^\d+\.\d+\.\d+$/)
 assert.equal(metadata.license, 'ISC')
 assert.equal(metadata.engines.node, '>=0.10.0')
 assert.equal(metadata.repository.url, 'git+https://github.com/alexandroit/stackline-once.git')
