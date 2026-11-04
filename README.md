@@ -10,7 +10,7 @@
 
 **[Documentation](https://alexandro.net/docs/vanilla/once/)** | **[npm](https://www.npmjs.com/package/@stackline/once)** | **[Issues](https://github.com/alexandroit/stackline-once/issues)** | **[Repository](https://github.com/alexandroit/stackline-once)**
 
-**Current package version:** `1.0.3`
+**Current package version:** `1.0.5`
 
 ---
 
@@ -27,7 +27,7 @@ with or endorsed by Isaac Z. Schlueter, npm, or the upstream project.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/once@1.0.4` |
+| Package | `@stackline/once@1.0.5` |
 | Node.js runtime | `>=0.10.0` |
 | CommonJS / primary entry | `./once.js` |
 | Type declarations | `./once.d.ts` |
@@ -41,13 +41,13 @@ with or endorsed by Isaac Z. Schlueter, npm, or the upstream project.
 For new code:
 
 ```sh
-npm install @stackline/once@1.0.4
+npm install @stackline/once@1.0.5
 ```
 
 To preserve an existing `require('once')` without source changes:
 
 ```sh
-npm install once@npm:@stackline/once@1.0.4
+npm install once@npm:@stackline/once@1.0.5
 ```
 
 ## Usage
